@@ -1,0 +1,103 @@
+This is BibTeX, Version 0.99d (TeX Live 2016/Arch Linux)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Database file #1: IEEEabrv.bib
+Database file #2: ref.bib
+Warning--string name "june" is undefined
+--line 101 of file ref.bib
+Warning--string name "november" is undefined
+--line 259 of file ref.bib
+I was expecting a `,' or a `}'---line 272 of file ref.bib
+ :   
+ :   Number                   = {03/2008},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--string name "december" is undefined
+--line 283 of file ref.bib
+Warning--string name "february" is undefined
+--line 292 of file ref.bib
+Warning--string name "september" is undefined
+--line 301 of file ref.bib
+I was expecting a `,' or a `}'---line 304 of file ref.bib
+ :     
+ :     url = {www.bu.edu/tech/files/2011/09/openmp.ppt},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--string name "september" is undefined
+--line 311 of file ref.bib
+Warning--string name "april" is undefined
+--line 320 of file ref.bib
+Warning--string name "february" is undefined
+--line 329 of file ref.bib
+Warning--string name "april" is undefined
+--line 338 of file ref.bib
+Repeated entry---line 490 of file ref.bib
+ : @techreport{openmp:api:2011
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 504 of file ref.bib
+ : @techreport{openmp:api:2013
+ :                            ,
+I'm skipping whatever remains of this entry
+Warning--string name "august" is undefined
+--line 639 of file ref.bib
+Warning--string name "cgo" is undefined
+--line 683 of file ref.bib
+Warning--string name "ago" is undefined
+--line 693 of file ref.bib
+Warning--string name "ago" is undefined
+--line 701 of file ref.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty booktitle in LLVM:CGO04
+
+Done.
+You've used 46 entries,
+            4087 wiz_defined-function locations,
+            1647 strings with 26396 characters,
+and the built_in function-call counts, 30154 in all, are:
+= -- 2462
+> -- 675
+< -- 182
++ -- 358
+- -- 130
+* -- 1401
+:= -- 4848
+add.period$ -- 98
+call.type$ -- 46
+change.case$ -- 51
+chr.to.int$ -- 393
+cite$ -- 47
+duplicate$ -- 2199
+empty$ -- 2484
+format.name$ -- 155
+if$ -- 6926
+int.to.chr$ -- 0
+int.to.str$ -- 46
+missing$ -- 448
+newline$ -- 217
+num.names$ -- 52
+pop$ -- 1060
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 2338
+stack$ -- 0
+substring$ -- 978
+swap$ -- 1762
+text.length$ -- 51
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 46
+warning$ -- 1
+while$ -- 122
+width$ -- 48
+write$ -- 522
+(There were 4 error messages)

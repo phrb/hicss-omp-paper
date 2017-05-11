@@ -1,0 +1,9 @@
+\begin{abstract}
+%\boldmath
+This paper aims to show that knowing the core concepts related to a given parallel architecture is necessary to write correct code, regardless of the parallel programming paradigm used.
+Programmers unaware of architecture concepts, such as beginners and students, often write parallel code that is slower than their sequential versions. It is also easy to write code that produces incorrect answers under specific conditions, which are hard to detect and correct.\\
+The increasing popularization of multi-core architectures motivates the implementation of parallel programming frameworks and tools, such as OpenMP, that aim to lower the difficulty of parallel programming. OpenMP uses compilation directives, or \textit{pragmas}, to reduce the number of lines that the programmer needs to write. However, the programmer still has to know when and how to use each of these directives. 
+The documentation and available tutorials for OpenMP give the idea that using compilation directives for parallel programming is easy. In this paper we show that this is not always the case by analysing a set of corrections of OpenMP programs made by students of a graduate course in Parallel and Distributed Computing, at University of São Paulo.
+Several incorrect examples of OpenMP \textit{pragmas} were found in tutorials and official documents available in the Internet. The idea that OpenMP is easy to use can lead to superficial efforts in teaching fundamental parallel programming concepts. This can in its turn lead to code that does not develop the full potential of OpenMP, and could also crash inexplicably due to very specific and hard-to-detect conditions. Our main contribution is showing how important it is to teach core architecture and parallel programming concepts properly, even when you have powerful tools such as OpenMP available.
+% Institution 2 = University of São Paulo
+\end{abstract}
