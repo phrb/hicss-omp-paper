@@ -1,0 +1,51 @@
+\section{Introduction}
+\label{sec:introduction}
+
+...
+
+In this context, the approach of using Compilation Directives to guide the
+compiler in the parallelization process has gained popularity. These directives
+are implemented using the compiler's pre-processing directives and are utilized
+as annotations that provide tips about the sequential code. Among the tools and
+extensions that use compilation directives are the \texttt{OpenMP} API
+\cite{Dagum1998a} \cite{Chapman:2007} used for writing programs for multi-core
+architectures, and the \texttt{OpenACC} programming
+standard~\cite{openacc:api}, used for writing programs for heterogeneous
+CPU/GPU architectures. The \texttt{OpenMP 4.0} specification supports
+offloading capabilities \cite{openmp:api:2013} such as \texttt{OpenACC} and
+\texttt{AMD HSA}~\cite{amd:hsa:site}. These tools aim to make easier the task
+of designing and implementing efficient and provably correct parallel
+algorithms. However, the abstraction layers built by the extensions also have
+the potential to conceal architectural details and to generate new parallel
+programming challenges.
+
+When comparing \texttt{OpenMP} to other available tools for developing
+multi-threaded applications such as the \texttt{pthreads} interface, the API
+can be considered almost costless. However, when writing more complex
+applications this may not be true. The design and implementation of such
+complex applications require more knowledge about platforms and execution
+models than what can be shown by tutorials, that present high level and trivial
+examples. These tutorials try to convince the user that programming with
+directives is simple and easy to do, which is not always true. For instance, to
+achieve good performance in some cases it is necessary to describe many
+restrictions on annotations~\cite{OpenMPTasks2009}~\cite{mattson2003good}.
+
+Krawezik and Cappello~\cite{CPE:CPE905} evidenced this difficulty by comparing
+MPI and three OpenMP versions of benchmarks. The most popular use of
+\texttt{OpenMP} directives is at the loop level. The programmer discovers
+potentially parallel loops and annotates the code with directives starting and
+closing parallel regions. Good results were obtained only when SPMD was
+implemented on OpenMP, and achieving good performance required a significant
+programming effort~\cite{CPE:CPE905}.
+
+In this work we have gathered data from assignments made by graduate students
+for the \emph{Introduction to Parallel and Distributed Computing} course. Among
+other exercises, the students were asked to find examples of \texttt{OpenMP}
+code in tutorials and official manuals that failed under special conditions.
+These conditions could be created by, for example, placing barriers or forcing
+racing conditions by exposing inaccurate thread management.
+
+
+The rest of the paper is organized as follows. The following section discusses
+related work... 
+
