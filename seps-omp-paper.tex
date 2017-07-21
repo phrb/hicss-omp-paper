@@ -2,25 +2,54 @@
 
 \begin{document}
 %---
-\title{OpenMP is Not as Easy as It Appears, \\
-      but It is the Easiest One}
+\title{P-Threads strikes back}
+%\titlenote{...}
+\subtitle{OpenMP is Not as Useful as It Appers}
+%\subtitlenote{...}
 %---
-\author{
-    \IEEEauthorblockN{Pedro Bruel\IEEEauthorrefmark{1},
-                      Paulo Meirelles\IEEEauthorrefmark{1} and
-                      Alfredo Goldman\IEEEauthorrefmark{1}}
-    \IEEEauthorblockA{\IEEEauthorrefmark{1}Software Systems Laboratory -- LSS\\
-    Institute of Mathematics and Statistics -- IME\\
-    University of São Paulo -- USP\\
-    São Paulo/SP, Brazil\\
-    \{phrb,paulormm,gold\}@ime.usp.br}
+\author{Pedro Bruel}
+%\authornote{This author is the one who did all the really hard work.}
+\affiliation{%
+  \institution{Software Systems Laboratory (LSS)\\ Institute of Mathematics and Statistics\\ University of São Paulo}
+  \streetaddress{Rua do Matão, 1010}
+  \city{São Paulo} 
+  \country{Brazil}
+  \postcode{05508-090}
 }
+\email{phrb@ime.usp.br}
 %---
-\maketitle
+\author{Paulo Meirelles}
+%\authornote{Posdoc}
+\affiliation{%
+  \institution{FLOSS Competence Center (CCSL)\\ Institute of Mathematics and Statistics\\ University of São Paulo}
+  \streetaddress{Rua do Matão, 1010}
+  \city{São Paulo} 
+  \country{Brazil}
+  \postcode{05508-090}
+}
+\email{paulormm@ime.usp.br}
 %---
+\author{Alfredo Goldman}
+%\authornote{Professor: the head.}
+\affiliation{%
+  \institution{Software Systems Laboratory (LSS)\\ Institute of Mathematics and Statistics\\ University of São Paulo}
+  \streetaddress{Rua do Matão, 1010}
+  \city{São Paulo} 
+  \country{Brazil}
+  \postcode{05508-090}
+}
+\email{gold@ime.usp.br}
+
+%---
+
+\renewcommand{\shortauthors}{Bruel et al.}
+
+%--
 \input{sections/00-abstract}
 %---
-\IEEEpeerreviewmaketitle
+
+\maketitle
+
 %---
 \input{sections/01-introduction}
 \input{sections/02-background}
@@ -32,6 +61,8 @@
 %---
 \input{sections/acknowledgments}
 %---
-\bibliographystyle{IEEEtran}
-\bibliography{IEEEabrv,seps-omp-paper}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{seps-omp-paper} 
+
 \end{document}
