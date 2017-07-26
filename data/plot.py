@@ -40,7 +40,8 @@ def plot_bar_stacks(data,
                     title,
                     ymin,
                     ymax,
-                    color_map):
+                    color_map,
+                    xticks_rotation = '15'):
 
     indexes = np.arange(index_range)
     fig     = plt.figure(1, figsize=(18, 10))
@@ -73,7 +74,7 @@ def plot_bar_stacks(data,
     ax.set_xlabel(xlabel)
     ax.set_xticks(indexes)
     ax.set_ylabel(ylabel)
-    ax.set_xticklabels(tick_labels, rotation = '15', ha = 'right')
+    ax.set_xticklabels(tick_labels, rotation = xticks_rotation, ha = 'right')
 
     ax.set_ylim([ymin, ymax])
 
@@ -214,7 +215,7 @@ if __name__ == '__main__':
     classes    = ['had_concepts', 'knew_apis', 'helped_openmp_class', 'helped_pthreads_class']
     learning   = ['learn_openmp', 'learn_pthreads']
     using      = ['par_loop_openmp', 'par_loop_pthreads', 'par_nested_loop_openmp', 'par_nested_loops_pthreads', 'improve_seq_openmp', 'improve_seq_pthreads']
-    comparing  = ['harder_learn', 'simpler_tech', 'easier_tech', 'easier_par_loop', 'easier_nested_par_loop', 'easier_improve_seq']
+    comparing  = ['harder_learn', 'simpler_tech', 'easier_tech', 'easier_par_loop', 'easier_nested_par_loop', 'easier_improve_seq', 'had_best_performance']
 
     background_mean_data = []
 
@@ -335,7 +336,8 @@ if __name__ == '__main__':
     comparing_data = {}
 
     levels = {"OpenMP": "OpenMP",
-              "POSIX Threads": "Pthreads"}
+              "POSIX Threads": "Pthreads",
+              "Equivalent": "Equivalent"}
 
     for subject in comparing:
         sub_data = data[subject]
