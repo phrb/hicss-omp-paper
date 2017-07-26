@@ -227,9 +227,29 @@ if __name__ == '__main__':
              "Technology",
              "Previous Knowledge",
              len(background_mean_data),
-             .9,
+             1.,
              [i.title() for i in background],
              "background_mean_knowledge",
+             "",
+             1,
+             5,
+             False,
+             "viridis")
+
+    learning_mean_data = []
+
+    for tech in learning:
+        learning_mean_data.append(np.mean([float(i) for i in data[tech]]))
+
+    print(learning_mean_data)
+
+    plot_bar(learning_mean_data,
+             "Technology",
+             "Difficulty to Learn",
+             len(learning_mean_data),
+             1.,
+             [i.replace("_", "\\_") for i in learning],
+             "learning_mean_difficulty",
              "",
              1,
              5,
@@ -254,7 +274,7 @@ if __name__ == '__main__':
              "",
              "Percentage of Students",
              len(classes_norm_data),
-             .9,
+             1.,
              [i.replace("_", "\\_") for i in classes],
              "yes_no_questions",
              "",
