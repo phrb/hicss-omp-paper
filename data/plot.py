@@ -19,7 +19,7 @@ def config_matplotlib():
     plt.rc('font', family = 'serif')
 
     font = {'family' : 'serif',
-            'size'   : 28}
+            'size'   : 40}
 
     mpl.rc('font', **font)
 
@@ -79,7 +79,7 @@ def plot_bar_stacks(data,
     ax.set_ylim([ymin, ymax])
 
     legend = ax.legend(tuple(legend_rects), tuple(legend_names),
-                        loc = 9, bbox_to_anchor = [0.5, 1.15], ncol = len(list(data.keys())), shadow = True,
+                        loc = 9, bbox_to_anchor = [0.5, 1.2], ncol = len(list(data.keys())), shadow = True,
                         title = "", fancybox = True)
 
     #autolabel(rects, ax)
@@ -102,7 +102,9 @@ def plot_bar(data,
              ymin,
              ymax,
              line,
-             color_map):
+             color_map,
+             xticks_rotation = '0',
+             align = 'center'):
 
     indexes = np.arange(index_range)
     fig     = plt.figure(1, figsize=(18, 10))
@@ -121,6 +123,7 @@ def plot_bar(data,
     ax.set_xticks(indexes)
     ax.set_ylabel(ylabel)
     ax.set_xticklabels(tick_labels, rotation = '0')
+    ax.set_xticklabels(tick_labels, rotation = xticks_rotation, ha = align)
 
     ax.set_ylim([ymin, ymax])
 
@@ -235,7 +238,7 @@ if __name__ == '__main__':
              1,
              5,
              False,
-             "viridis")
+             "Greys")
 
     learning_mean_data = []
 
@@ -255,7 +258,7 @@ if __name__ == '__main__':
              1,
              5,
              False,
-             "viridis")
+             "Greys")
 
     classes_norm_data = []
 
@@ -282,7 +285,9 @@ if __name__ == '__main__':
              0,
              100,
              False,
-             "viridis")
+             "Greys",
+             xticks_rotation = '15',
+             align = 'right')
 
     using_data = {}
 

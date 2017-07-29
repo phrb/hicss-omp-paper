@@ -7,7 +7,7 @@ BIBTEX    = bibtex
 pdf: $(BASE_NAME).pdf
 ps: $(BASE_NAME).ps
 
-$(BASE_NAME).pdf: $(BASE_NAME).tex 
+$(BASE_NAME).pdf: $(BASE_NAME).tex configurations.tex sections/*.tex data/img/*
 	$(PDFLATEX) $<
 	$(BIBTEX) $(BASE_NAME)
 	$(PDFLATEX) $< 
