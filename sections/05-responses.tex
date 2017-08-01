@@ -1,13 +1,81 @@
-\section{Students' Responses}
+\section{Students' Background \& Responses}
 \label{sec:responses}
 
-This section presents the responses given by the students to our
-questionnaire. The questions are listed in Tables \ref{tab:likert}
-and \ref{tab:comparisons}.
+In this section we present the background of our students in the technologies
+relevant to the course and to the assignment. Then we present the responses
+given by the students to our questionnaire. The questions are listed in Tables
+\ref{tab:likert} and \ref{tab:comparisons}.
 
-\todo[inline,color=cyan,author=Pedro]{Add reference for questionnaires from Herez}
 \todo[inline,color=cyan,author=Pedro]{Improve figure colorscheme}
 
+\subsection{Background}
+
+The course of Concurrent, Parallel and Distributed Computing is offered to
+students of both the graduate and undergraduate programs in Computer Science at
+the University of São Paulo. To gauge the proficiency and knowledge of our
+students we elaborated a five-point scale from \textit{Do not Know} $(1)$ to
+\textit{Expert or Proficient} $(5)$.  The students were asked to express their
+proficiency level on this scale, and their responses are shown in Figure
+\ref{fig:background}.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.85\columnwidth]{background_questions}
+    \caption{Student knowledge \textit{before} the assignment}
+    \label{fig:background}
+\end{figure}
+
+It is common for Computer Science introductory and advanced courses in the
+graduate and undergraduate programs of the University of São Paulo to be given
+in programming languages such as C, Java and Python. Figure
+\ref{fig:background} shows that students reported higher proficiency in those
+languages. The C language was the one with which students reported most
+proficiency.
+
+The students were asked to evaluate their proficiency in \textit{OpenMP} and
+\textit{Pthreads}, \textit{before} completing the assignment, with two sets of
+questions. The first set used the same five-point scale as the other background
+questions and is also shown in Figure \ref{fig:background}. The students
+reported significantly larger proficiency in \textit{Pthreads} than
+\textit{OpenMP}, and the majority of the students reported they did not know
+\textit{OpenMP} before the course.
+
+\begin{table}[htpb]
+    \centering
+    \begin{tabular}{@{}p{0.9\columnwidth}p{0.08\columnwidth}@{}}
+        \toprule
+        \multicolumn{1}{c}{\scriptsize{Have you$\dots$}} & \textnumero \\ \midrule
+        \scriptsize{Had contact with parallel and distributed concepts before?} & $(1)$ \\
+        \scriptsize{Had contat with the APIs before?} & $(2)$ \\
+        \scriptsize{Learned from the OpenMP class?} & $(3)$ \\
+        \scriptsize{Learned from the Pthreads class?} & $(4)$ \\ \bottomrule
+    \end{tabular}
+    \caption{Questions for Figure \ref{fig:classes}}
+    \label{tab:classes}
+\end{table}
+
+The second set of questions regarding student proficiency with the APIs
+comprised the 4 \textit{Yes or No} questions listed in Table \ref{tab:classes}.
+This set of questions also asked the students to evaluate whether the classes
+on each subject helped their understanding and learning of the technologies.
+The student responses for this set are shown in Figure \ref{fig:classes}.  The
+majority of the students have had previous contact with the concepts related to
+concurrent, parallel and distributed programming, but the majority also have
+not had contact or experience with \textit{OpenMP} or \textit{Pthreads}.  Most
+students reported that the classes on each API helped their learning.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.85\columnwidth]{classes_questions}
+    \caption{Student API knowledge \textit{before} the assignment and their relation to classes}
+    \label{fig:classes}
+\end{figure}
+
+\subsection{Responses}
+
+The students were asked to answer 3 sets of questions regarding their
+experience with \textit{OpenMP} and \textit{Pthreads}, \textit{after}
+completing the assignment.
 The first set of questions used a Likert-type Scale to measure the relationship
 of the students with the two APIs in the context of the assignment. The Likert
 Scale~\cite{likert1932technique} enables respondents to express their agreement
