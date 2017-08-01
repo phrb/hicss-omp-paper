@@ -19,7 +19,7 @@ def config_matplotlib():
     plt.rc('font', family = 'serif')
 
     font = {'family' : 'serif',
-            'size'   : 40}
+            'size'   : 36}
 
     mpl.rc('font', **font)
 
@@ -41,7 +41,8 @@ def plot_bar_stacks(data,
                     ymin,
                     ymax,
                     color_map,
-                    xticks_rotation = '15'):
+                    xticks_rotation = '15',
+                    align = 'right'):
 
     indexes = np.arange(index_range)
     fig     = plt.figure(1, figsize=(18, 10))
@@ -74,7 +75,7 @@ def plot_bar_stacks(data,
     ax.set_xlabel(xlabel)
     ax.set_xticks(indexes)
     ax.set_ylabel(ylabel)
-    ax.set_xticklabels(tick_labels, rotation = xticks_rotation, ha = 'right')
+    ax.set_xticklabels(tick_labels, rotation = xticks_rotation, ha = align)
 
     ax.set_ylim([ymin, ymax])
 
@@ -229,7 +230,7 @@ if __name__ == '__main__':
 
     plot_bar(background_mean_data,
              "Technology",
-             "Previous Knowledge",
+             "Mean Previous Knowledge",
              len(background_mean_data),
              1.,
              [i.title() for i in background],
@@ -240,6 +241,57 @@ if __name__ == '__main__':
              False,
              "Greys")
 
+    background_data = {}
+
+    levels = {"1": "1",
+              "2": "2",
+              "3": "3",
+              "4": "4",
+              "5": "5"}
+
+    for subject in background:
+        sub_data = data[subject]
+        background_data[subject] = {}
+
+        for response in sub_data:
+            try:
+                background_data[subject][levels[response]] += 1
+            except KeyError:
+                background_data[subject][levels[response]] = 1
+
+        for key in background_data[subject].keys():
+            background_data[subject][key] *= 100 / len(sub_data)
+
+    print(background_data)
+
+    stacked_background_data = {}
+
+    for value in levels.values():
+        for key in background_data.keys():
+            if value not in background_data[key].keys():
+                background_data[key][value] = 0
+            try:
+                stacked_background_data[value].append(background_data[key][value])
+            except KeyError:
+                stacked_background_data[value] = [background_data[key][value]]
+
+
+    plot_bar_stacks(stacked_background_data,
+                    "",
+                    "Percentage of Responses",
+                    len(stacked_background_data["1"]),
+                    1.,
+                    [i.title() for i in background],
+                    "background_questions",
+                    "",
+                    0,
+                    100,
+                    "viridis",
+                    xticks_rotation = '0',
+                    align = 'center')
+
+    print(stacked_background_data)
+
     learning_mean_data = []
 
     for tech in learning:
@@ -249,16 +301,67 @@ if __name__ == '__main__':
 
     plot_bar(learning_mean_data,
              "Technology",
-             "Difficulty to Learn",
+             "Mean Difficulty to Learn",
              len(learning_mean_data),
              1.,
-             [i.replace("_", "\\_") for i in learning],
+             ["OpenMP", "Pthreads"],
              "learning_mean_difficulty",
              "",
              1,
              5,
              False,
              "Greys")
+
+    learning_data = {}
+
+    levels = {"1": "1",
+              "2": "2",
+              "3": "3",
+              "4": "4",
+              "5": "5"}
+
+    for subject in learning:
+        sub_data = data[subject]
+        learning_data[subject] = {}
+
+        for response in sub_data:
+            try:
+                learning_data[subject][levels[response]] += 1
+            except KeyError:
+                learning_data[subject][levels[response]] = 1
+
+        for key in learning_data[subject].keys():
+            learning_data[subject][key] *= 100 / len(sub_data)
+
+    print(learning_data)
+
+    stacked_learning_data = {}
+
+    for value in levels.values():
+        for key in learning_data.keys():
+            if value not in learning_data[key].keys():
+                learning_data[key][value] = 0
+            try:
+                stacked_learning_data[value].append(learning_data[key][value])
+            except KeyError:
+                stacked_learning_data[value] = [learning_data[key][value]]
+
+
+    plot_bar_stacks(stacked_learning_data,
+                    "",
+                    "Percentage of Responses",
+                    len(stacked_learning_data["1"]),
+                    1.,
+                    ["OpenMP", "Pthreads"],
+                    "learning_difficulty_questions",
+                    "",
+                    0,
+                    100,
+                    "viridis",
+                    xticks_rotation = '0',
+                    align = 'center')
+
+    print(stacked_learning_data)
 
     classes_norm_data = []
 
@@ -279,15 +382,61 @@ if __name__ == '__main__':
              "Percentage of Students",
              len(classes_norm_data),
              1.,
-             [i.replace("_", "\\_") for i in classes],
+             ["$(" + str(classes.index(i) + 1) + ")$" for i in classes],
              "yes_no_questions",
              "",
              0,
              100,
              False,
-             "Greys",
-             xticks_rotation = '15',
-             align = 'right')
+             "Greys")
+
+    classes_data = {}
+
+    levels = {"Sim": "Yes",
+              "Não": "No"}
+
+    for subject in classes:
+        sub_data = data[subject]
+        classes_data[subject] = {}
+
+        for response in sub_data:
+            try:
+                classes_data[subject][levels[response]] += 1
+            except KeyError:
+                classes_data[subject][levels[response]] = 1
+
+        for key in classes_data[subject].keys():
+            classes_data[subject][key] *= 100 / len(sub_data)
+
+    print(classes_data)
+
+    stacked_classes_data = {}
+
+    for value in levels.values():
+        for key in classes_data.keys():
+            if value not in classes_data[key].keys():
+                classes_data[key][value] = 0
+            try:
+                stacked_classes_data[value].append(classes_data[key][value])
+            except KeyError:
+                stacked_classes_data[value] = [classes_data[key][value]]
+
+
+    plot_bar_stacks(stacked_classes_data,
+                    "",
+                    "Percentage of Responses",
+                    len(stacked_classes_data["Yes"]),
+                    1.,
+                    ["$(" + str(classes.index(i) + 1) + ")$" for i in classes],
+                    "classes_questions",
+                    "",
+                    0,
+                    100,
+                    "viridis",
+                    xticks_rotation = '0',
+                    align = 'center')
+
+    print(stacked_classes_data)
 
     using_data = {}
 
@@ -326,15 +475,17 @@ if __name__ == '__main__':
 
     plot_bar_stacks(stacked_using_data,
                     "",
-                    "Percentage of Likert Scale Values",
+                    "Percentage of Responses",
                     len(stacked_using_data["SA"]),
                     1.,
-                    [i.replace("_", "\\_") for i in using],
+                    ["$(" + str(using.index(i) + 1) + ")$" for i in using],
                     "likert_questions",
                     "",
                     0,
                     100,
-                    "viridis")
+                    "viridis",
+                    xticks_rotation = '0',
+                    align = 'center')
 
     print(stacked_using_data)
 
@@ -376,11 +527,13 @@ if __name__ == '__main__':
                     "Percentage",
                     len(stacked_comparing_data["OpenMP"]),
                     1.,
-                    [i.replace("_", "\\_") for i in comparing],
+                    ["$(" + str(comparing.index(i) + len(using) + 1) + ")$" for i in comparing],
                     "comparisons",
                     "",
                     0,
                     100,
-                    "viridis")
+                    "viridis",
+                    xticks_rotation = '0',
+                    align = 'center')
 
     print(stacked_comparing_data)

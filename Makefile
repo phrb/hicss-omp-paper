@@ -1,4 +1,4 @@
-BASE_NAME = seps-omp-paper
+BASE_NAME = main
 
 LATEX     = latex
 PDFLATEX  = pdflatex
@@ -7,7 +7,7 @@ BIBTEX    = bibtex
 pdf: $(BASE_NAME).pdf
 ps: $(BASE_NAME).ps
 
-$(BASE_NAME).pdf: $(BASE_NAME).tex configurations.tex sections/*.tex data/img/*
+$(BASE_NAME).pdf: $(BASE_NAME).tex configurations.tex sections/*.tex data/img/* *.bib
 	$(PDFLATEX) $<
 	$(BIBTEX) $(BASE_NAME)
 	$(PDFLATEX) $< 
