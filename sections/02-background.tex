@@ -1,6 +1,70 @@
 \section{Background}
 \label{sec:background}
 
-\todo[inline,color=cyan,author=Pedro]{Cite our previous paper, making it clear that we are the authors}
-\todo[inline,color=cyan,author=Pedro]{Describe related work}
-\todo[inline,color=cyan,author=Pedro]{Describe related work since last paper}
+%\todo[inline,color=cyan,author=Pedro]{Cite our previous paper, making it clear that we are the authors}
+%\todo[inline,color=cyan,author=Pedro]{Describe related work}
+%\todo[inline,color=cyan,author=Pedro]{Describe related work since last paper}
+
+The discipline of Parallel and Distributed Computing has evolved from an
+elective topic into one of the main curricular components in a Computer Science
+courses, as pointed out in \cite{acmcurricula}, thus, deciding what
+technology/framework to teach students in Parallel Computing class has a great
+impact on the student's ability to develop efficient solutions for algorithmic
+problems. 
+
+There are several chain of thoughts on what is the best level of abstraction to
+teach parallel programming courses. In \cite{6565518}, Falcao argues that
+introducing a higher level parallel programming interface such as OpenMP in the
+beginning of a CS course would cause very little overhead and would bring
+great benefits for the rest of the course. The approach of introducing mostly
+practical learning experiences spread all over a CS course - increasing in
+depth as the student advances in classes was also supported by the authors in
+\cite{FOLEY2017138}. In their work they introduce a tool named OnRamp, a web
+portal that aims to help students learn how to write parallel code in a
+top-down approach, i.e., from practical experiences to more conceptual ones.
+
+Pllana et al. use a similar approach as described in \cite{Pllana:2009} where
+the authors adopt a Model Driven Development to build parallel solutions by
+means of Parallel Building Blocks. The authors describe a programming
+environment that takes these high level model and transform them into source
+code. In that way, the tool goal is to hide the complexity of writing parallel
+code away from the students.
+
+In contrast to these top-down approaches for teaching parallel programming
+there is the bottom-up approach on which, learning a software tool is just one
+of the objectives of a parallel programming class and that would come after the
+student are presented the concepts of parallel programming.
+
+In a previous investigation \cite{goncalves:OpenMPNotEasy}, we showed that
+first teaching the conceptual aspects of parallel programming instead of
+jumping into teaching higher level parallel programming interfaces such as
+OpenMP is of extreme importance mainly because the available
+resources/tutorials for learning such APIs may contain errors that would be
+otherwise difficult to find. In our work we listed several sources of
+tutorials/hands-on materials retrieved from the web on which under-grad
+students were able to point parallel correctness mistakes
+\cite{SuB:2005:CMO:1892830.1892863}.
+
+Another point that should be taken into consideration is that, not all
+parallel solutions can be expressed using tools such as OpenMP. This is the
+main topic discussed by Sü\ss and Leopold in \cite{Leopold:userOpenMP}, where
+they show that, by using a simple sorting algorithm as example, we can identify
+patterns that are difficult to capture using OpenMP and that could be easily
+handled using a lower level programming interface such as POSIX Threads.
+
+In \cite{ADAMS201731}, Adams also showed a set of patterns implemented using
+PThreads that help students understand some aspects of parallel programming
+that would be harder to grasp by using only OpenMP examples. His catalog of
+patterns also contains many solutions implemented using OpenMP.
+
+In this paper we argue that teaching a lower level parallel programming
+interface such as PThreds is equally important to teaching higher level
+interfaces such as OpenMP and both should be part of a complete parallel
+programming class curriculum like the one described by Brown et al. in
+\cite{Brown:2010:SPC:1971681.1971689}, where it has been pointed that the
+choice of a software tool should be only one of the knowledge areas that should
+be explored during a parallel programming course, along with data structure and
+algorithms; software design; and parallel hardware platforms.
+
+\todo[inline,color=orange,author=Raphael]{Maybe we should make a better
+connection between the end of this section and the next one;}
