@@ -1,0 +1,68 @@
+\section{Related Work}
+\label{sec:relatedwork}
+
+%\todo[inline,color=cyan,author=Pedro]{Cite our previous paper, making it clear that we are the authors}
+%\todo[inline,color=cyan,author=Pedro]{Describe related work}
+%\todo[inline,color=cyan,author=Pedro]{Describe related work since last paper}
+
+The selection of teaching tools for Parallel and Distributed classes impacts
+the development of students' abilities to solve algorithmic problems
+efficiently. The importance of selecting good tools for teaching Parallel and
+Distributed Computing has been increasingly important, especially since the
+topic became a core component of the ACM undergraduate computer science
+curricula in 2013~\cite{acmcurricula}.
+
+Different approaches have been used to study the selection of the best level of
+abstraction for teaching Parallel and Distributed programming courses.
+Falcao~\cite{6565518} argues that introducing a high-level parallel programming
+interface such as \textit{OpenMP} in the beginning of an undergraduate computer
+science course would cause a small overhead and benefit the rest of the course.
+Foley \textit{et al.}~\cite{FOLEY2017138} support the introduction of practical
+learning experiences along an undergraduate course, of increasing depth as the
+course progresses. They introduce OnRamp, a web application to help students
+learn to write parallel code starting with practical and moving to conceptual
+experiences.  Pllana \textit{et al.}~\cite{Pllana:2009} adopt a Model Driven
+Development approach to develop parallel solutions using Parallel Building
+Blocks. They introduce a programming environment that transforms these
+high-level models in source code. The tool's goal is to hide from the students
+the complexity of writing parallel code.
+
+The approaches mentioned so far introduce tools for parallel programming before
+the related concepts.  Other approaches instead consider learning software
+tools as just one of the objectives of the course, and argue that their
+introduction should come after the introduction of concepts of Parallel and
+Distributed Computing.
+
+In previous work~\cite{goncalves:OpenMPNotEasy} we show that teaching the
+concepts of parallel programming first instead of high-level parallel
+programming APIs is important, especially because the available resources and
+tutorials for these APIs may contain difficult to find errors.  We listed
+several sources of tutorials and hands-on materials obtained in the internet in
+which undergraduate students were able to point parallel correctness
+errors~\cite{SuB:2005:CMO:1892830.1892863}.
+
+Sü\ss{} and Leopold~\cite{Leopold:userOpenMP} discuss the inability to express
+all parallel solutions in tools such as \textit{OpenMP}. They used a sorting
+algorithm to show that it is easy to find patterns that are difficult to
+implement in \textit{OpenMP}, but can be easily implemented in lower-level
+programming interfaces, such as POSIX Threads.
+
+Adams~\cite{ADAMS201731} presented a set of patterns implemented using
+\textit{Pthreads} that can help students understand aspects of parallel
+programming that would be difficult to grasp using only \textit{OpenMP}
+examples. His catalog also contained patterns implemented in \textit{OpenMP}.
+
+\todo[inline,color=cyan,author=Pedro]{This last paragraph maybe fits best in
+the end of the introduction}
+
+In this paper we present data that supports the importance of composing a
+curriculum for Parallel and Distributed Computing courses using low-level
+programming interfaces, such as \textit{Pthreads}, as well as high-level
+interfaces, such as \textit{OpenMP}.  Brown \textit{et
+al.}~\cite{Brown:2010:SPC:1971681.1971689}, points that the choice of a
+software tool should be only one of the topics explored during a parallel
+programming course. Topics such as data structures, algorithms, software design
+and parallel hardware platforms should also be explored.
+
+\todo[inline,color=orange,author=Raphael]{Maybe we should make a better
+connection between the end of this section and the next one;}
