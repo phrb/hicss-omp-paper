@@ -1,12 +1,126 @@
 \section{OpenMP \& Pthreads}
 \label{sec:apis}
 
-\todo[inline,color=cyan,author=Pedro]{Provide brief descriptions of the APIs}
+In this section we discuss the main concepts involved in both OpenMP and
+pthreads libraries as they can both be used to implement parallel programs by
+using the fork-join model, on which the sequential region execution is followed
+by parallel regions execution.
+
 
 \subsection{Pthreads}
 
-\todo[inline,color=cyan,author=Pedro]{Describe Pthreads}
+The pthreads library specification was design to solve the problem of having
+multiple hardware vendors delivering specific APIs and tools for developing
+multithread programs that were not portable across multiple platforms. The
+thread programming interface has been specified by the IEEE POSIX 1003.1c
+standard and any implementation adhering to this standard is called POSIX
+threads or pthreads.
+
+In C/C++ languages the pthreads library is used to control thread execution
+on GNU/Linux by providing mechanisms to create and synchronize threads. In this
+model, the execution starts in a sequential region and threads needed to be
+explicitly started in order to start a parallel region.
+
+Listing \ref{lst:listing-pthreads} presents a sample of code that uses the
+pthreads library. As explained before, the program starts its execution in a
+single thread and up to line 6 only one thread is executing the main flow of
+instructions.
+
+When the \texttt{pthread\_create()} function is called, a new thread is created
+and then the application enters a parallel region with two threads executing.
+The main mechanism available for synchroninzing thread executions are thread
+barrier. The pthread library implements barriers at the
+\texttt{pthread\_join()} where the thread that reaches that point will wait for
+the completion of other threads to continue the execution of the main flow.
+operation. In line 10 we can see an example of thread synchronization using the
+barrier definition.
+
+\begin{lstlisting}[language=C, basicstyle=\footnotesize, numbers=left, 
+                   frame=single, showspaces=false, showstringspaces=false,
+                   caption={Pthread Sample Program}, captionpos=b,
+                   label=lst:listing-pthreads]
+int main(){
+    pthread_t thread1 ;
+    DATA TYPE *params = 10;
+    int iret1;
+    
+    iret1 = pthread_create(&thread1 , NULL, 
+                           task function , 
+                           (void*) params);
+    printf ("Thread 1 return : %d\n", iret1 ) ;
+    pthread_join(thread1 , NULL) ;
+
+    return 0;
+}
+void *task function(void *ptr) { 
+    DATATYPE *value;
+    value = (DATA TYPE *) ptr ;
+    /* Computing */
+}
+\end{lstlisting}
+
+The choice to use the pthreads library, and not OpenMP, can be motivated by the
+fact that pthreads is a common library, available on platforms with GNU/Linux,
+and operates in a lower level of abstraction in comparison with OpenMP threads.
 
 \subsection{OpenMP}
 
-\todo[inline,color=cyan,author=Pedro]{Describe OpenMP}
+OpenMP is an specification that defines a set of compiler directives, libraries
+and environment variables with the goal to deliver tools that help exploring
+the inherent program parallelism by means of threads. The OpenMP specification
+is kept by a group named OpenMP Architecture Review Board \footnote{} composed
+by several hardware manufacturers as well as parallel software developers and
+users.
+
+The code structure of an OpenMP program is composed by intertwined sequential
+and parallel regions that always start with a sequential one, i.e., the program
+starts with a sequential region - the master thread, then a series of parallel
+ones starts and ends - fork-join model.
+
+The OpenMP directives are implemented in C/C++ and Fortran compilers. At the
+C/C++ compilers, the specification of parallel executions is done by means of
+\textit{pragma} directives. The pragma directives are defined inside the code
+by means of the \texttt{\#pragma} keyword. In case the compiler does not
+recognize the keyword, the compilation procedure is not affected and the
+sequential version of the program is built.
+
+The directives format follow the rule \texttt{\#pragma directive [clauses]}.
+Each line has at least one directive and may contain one or more clauses. The
+main directives available at the specification are: 
+\begin{itemize}
+    \item Work sharing: this set of directives dictate how the work is shared
+    among threads;
+    \item Tasks: define independent code regions that can be executed by any
+    thread available. It also defines the dependencies between tasks;
+    \item Synchronization: used to synchronize the code regions that are being
+    executing within separated threads.
+\end{itemize}
+
+Listing \ref{lst:listing-omp} shows a basic OpenMP example. The example only
+shows the declaration of a parallel region named \texttt{firstprivate} (line
+1), then a region that should only be executed by a single thread (line 2),
+then a for that should be executed in parallel and that the work division will
+bu automatic (line 6). Then, in line 10 we define a critical region which can
+only be executed by a single thread at a time. In the end, at line 12 we define
+a region that should only be executed by the master thread.
+
+
+\begin{lstlisting}[language=C, basicstyle=\footnotesize, numbers=left, 
+                   frame=single, showspaces=false, showstringspaces=false,
+                   caption={OpenMP Sample Program}, captionpos=b,
+                   label=lst:listing-omp]
+#pragma omp parallel firstprivate (aux dot){ 
+    #pragma omp single
+    printf ("Begin of the parallel region, 
+            number of threads : %d\n", 
+            omp get num threads ()) ;
+    #pragma omp for schedule (auto) 
+    for(i = 0; i < SIZE; i++){
+        aux dot += A[i] * B[i]; 
+    }    
+    #pragma omp critical
+    dot += aux_dot ;
+    #pragma omp master
+    printf("Final result: %d.\n", dot);
+}
+\end{lstlisting}
