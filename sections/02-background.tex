@@ -5,66 +5,64 @@
 %\todo[inline,color=cyan,author=Pedro]{Describe related work}
 %\todo[inline,color=cyan,author=Pedro]{Describe related work since last paper}
 
-The discipline of Parallel and Distributed Computing has evolved from an
-elective topic into one of the main curricular components in a Computer Science
-courses, as pointed out in \cite{acmcurricula}, thus, deciding what
-technology/framework to teach students in Parallel Computing class has a great
-impact on the student's ability to develop efficient solutions for algorithmic
-problems. 
+The selection of teaching tools for Parallel and Distributed classes impacts
+the development of students' abilities to solve algorithmic problems
+efficiently. The importance of selecting good tools for teaching Parallel and
+Distributed Computing has been increasingly important, especially since the
+topic became a core component of the ACM undergraduate computer science
+curricula in 2013~\cite{acmcurricula}.
 
-There are several chain of thoughts on what is the best level of abstraction to
-teach parallel programming courses. In \cite{6565518}, Falcao argues that
-introducing a higher level parallel programming interface such as OpenMP in the
-beginning of a CS course would cause very little overhead and would bring
-great benefits for the rest of the course. The approach of introducing mostly
-practical learning experiences spread all over a CS course - increasing in
-depth as the student advances in classes was also supported by the authors in
-\cite{FOLEY2017138}. In their work they introduce a tool named OnRamp, a web
-portal that aims to help students learn how to write parallel code in a
-top-down approach, i.e., from practical experiences to more conceptual ones.
+Different approaches have been used to study the selection of the best level of
+abstraction for teaching Parallel and Distributed programming courses.
+Falcao~\cite{6565518} argues that introducing a high-level parallel programming
+interface such as \textit{OpenMP} in the beginning of an undergraduate computer
+science course would cause a small overhead and benefit the rest of the course.
+Foley \textit{et al.}~\cite{FOLEY2017138} support the introduction of practical
+learning experiences along an undergraduate course, of increasing depth as the
+course progresses. They introduce OnRamp, a web application to help students
+learn to write parallel code starting with practical and moving to conceptual
+experiences.  Pllana \textit{et al.}~\cite{Pllana:2009} adopt a Model Driven
+Development approach to develop parallel solutions using Parallel Building
+Blocks. They introduce a programming environment that transforms these
+high-level models in source code. The tool's goal is to hide from the students
+the complexity of writing parallel code.
 
-Pllana et al. use a similar approach as described in \cite{Pllana:2009} where
-the authors adopt a Model Driven Development to build parallel solutions by
-means of Parallel Building Blocks. The authors describe a programming
-environment that takes these high level model and transform them into source
-code. In that way, the tool goal is to hide the complexity of writing parallel
-code away from the students.
+The approaches mentioned so far introduce tools for parallel programming before
+the related concepts.  Other approaches instead consider learning software
+tools as just one of the objectives of the course, and argue that their
+introduction should come after the introduction of concepts of Parallel and
+Distributed Computing.
 
-In contrast to these top-down approaches for teaching parallel programming
-there is the bottom-up approach on which, learning a software tool is just one
-of the objectives of a parallel programming class and that would come after the
-student are presented the concepts of parallel programming.
+In previous work~\cite{goncalves:OpenMPNotEasy} we show that teaching the
+concepts of parallel programming first instead of high-level parallel
+programming APIs is important, especially because the available resources and
+tutorials for these APIs may contain difficult to find errors.  We listed
+several sources of tutorials and hands-on materials obtained in the internet in
+which undergraduate students were able to point parallel correctness
+errors~\cite{SuB:2005:CMO:1892830.1892863}.
 
-In a previous investigation \cite{goncalves:OpenMPNotEasy}, we showed that
-first teaching the conceptual aspects of parallel programming instead of
-jumping into teaching higher level parallel programming interfaces such as
-OpenMP is of extreme importance mainly because the available
-resources/tutorials for learning such APIs may contain errors that would be
-otherwise difficult to find. In our work we listed several sources of
-tutorials/hands-on materials retrieved from the web on which under-grad
-students were able to point parallel correctness mistakes
-\cite{SuB:2005:CMO:1892830.1892863}.
+Sü\ss{} and Leopold~\cite{Leopold:userOpenMP} discuss the inability to express
+all parallel solutions in tools such as \textit{OpenMP}. They used a sorting
+algorithm to show that it is easy to find patterns that are difficult to
+implement in \textit{OpenMP}, but can be easily implemented in lower-level
+programming interfaces, such as POSIX Threads.
 
-Another point that should be taken into consideration is that, not all
-parallel solutions can be expressed using tools such as OpenMP. This is the
-main topic discussed by Sü\ss and Leopold in \cite{Leopold:userOpenMP}, where
-they show that, by using a simple sorting algorithm as example, we can identify
-patterns that are difficult to capture using OpenMP and that could be easily
-handled using a lower level programming interface such as POSIX Threads.
+Adams~\cite{ADAMS201731} presented a set of patterns implemented using
+\textit{Pthreads} that can help students understand aspects of parallel
+programming that would be difficult to grasp using only \textit{OpenMP}
+examples. His catalog also contained patterns implemented in \textit{OpenMP}.
 
-In \cite{ADAMS201731}, Adams also showed a set of patterns implemented using
-PThreads that help students understand some aspects of parallel programming
-that would be harder to grasp by using only OpenMP examples. His catalog of
-patterns also contains many solutions implemented using OpenMP.
+\todo[inline,color=cyan,author=Pedro]{This last paragraph maybe fits best in
+the end of the introduction}
 
-In this paper we argue that teaching a lower level parallel programming
-interface such as PThreds is equally important to teaching higher level
-interfaces such as OpenMP and both should be part of a complete parallel
-programming class curriculum like the one described by Brown et al. in
-\cite{Brown:2010:SPC:1971681.1971689}, where it has been pointed that the
-choice of a software tool should be only one of the knowledge areas that should
-be explored during a parallel programming course, along with data structure and
-algorithms; software design; and parallel hardware platforms.
+In this paper we present data that supports the importance of composing a
+curriculum for Parallel and Distributed Computing courses using low-level
+programming interfaces, such as \textit{Pthreads}, as well as high-level
+interfaces, such as \textit{OpenMP}.  Brown \textit{et
+al.}~\cite{Brown:2010:SPC:1971681.1971689}, points that the choice of a
+software tool should be only one of the topics explored during a parallel
+programming course. Topics such as data structures, algorithms, software design
+and parallel hardware platforms should also be explored.
 
 \todo[inline,color=orange,author=Raphael]{Maybe we should make a better
 connection between the end of this section and the next one;}
