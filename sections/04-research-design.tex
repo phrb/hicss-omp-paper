@@ -1,32 +1,79 @@
 \section{Research Design}
 \label{sec:researchdesign}
 
-\todo[inline,color=cyan,author=Pedro]{Describe research design}
+This section describes our research design. We devised a questionnaire
+regarding student experience with solving the same problem using
+\textit{Pthreads} and \textit{OpenMP} during the Concurrent, Parallel and
+Distributed Computing Course at the Computer Science program of the University
+of São Paulo. We answered 3 research questions using analyses of the students'
+responses.
 
 \subsection{The Concurrent, Parallel and Distributed Computing Course}
 
-\todo[inline,color=cyan,author=Pedro]{Describe the course}
+The Computer Science program of the University of São Paulo offers Concurrent,
+Parallel and Distributed Computing courses for graduate and undergraduate
+students in a single class. The course aims to promote meaningful exchanges of
+knowledge and experience between undergraduate and graduate students.
+
+The course presents students with a series of software engineering challenges
+in the form of assignments. The final is composed of an essay and a
+presentation on a relevant topic related to Concurrent, Parallel and
+Distributed Computing.
+
+We devised an assignment to measure the students' difficulties to
+learn and use \textit{Pthreads} and \textit{OpenMP} to solve
+a simple problem. Students had to implement parallel versions
+of a sequential code using \textit{Pthreads} and \textit{OpenMP}.
+We provided a sequential implementation for the calculation of
+the Mandelbrot Set. The sequential code presented an embarrassingly
+parallel problem with two nested loops, and a third loop with
+dependent iterations that could not be parallelized easily.
+
+The assignment required that the students measure the performance of the
+sequential code and the performance improvements they achieved using
+\textit{Pthreads} and \textit{OpenMP}.  After completing the assignment the
+students were asked to answer a questionnaire.
 
 \subsection{Questionnaire}
 
-\todo[inline,color=cyan,author=Pedro]{Describe the questionnaire}
-\todo[inline,color=cyan,author=Pedro]{Add reference for questionnaires from Herez}
+The questionnaire had two parts. The first part asked questions
+about the students' previous experiences with common programming languages and
+parallel and distributed programming concepts and tools. We were also
+interested in students' perception of the impact of our classes on
+\textit{Pthreads} and \textit{OpenMP} on their learning difficulty.
+
+The questions of the second part were related to the students'
+experience with \textit{Pthreads} and \textit{OpenMP} \textit{after}
+the completion of the assignment.
+
+We obtained responses, and consent to use them in our research, from 38 of the
+54 students enrolled in the Concurrent, Parallel and Distributed Computing
+course. Section \ref{sec:background} presents a detailed description of
+each set of questions our analysis of the students' responses.
 
 \subsection{Research Questions}
 
-\todo[inline,color=cyan,author=Pedro]{Improve RQ discussion and descriptions}
+In previous work~\cite{goncalves:OpenMPNotEasy} we showed that
+teaching \textit{OpenMP} requires teaching important parallel
+and distributed computing concepts first, since it is easy
+to find errors on commonly used \textit{OpenMP} learning material.
 
-According to the students' perception, which API:
+In this paper we argue that students are capable of learning and using
+\textit{Pthreads} to obtain good performance improvements, despite their
+perception that \textit{OpenMP} is much easier to learn and use.
+The research questions that led the development of the questionnaire
+and our analysis of the students' responses were the following:
 
 \begin{description}
-    \item[RQ1:] \textit{Was easier to learn and use?}
-    \item[RQ2:] \textit{Improved performance the most?}
-\end{description}
-
-After evaluation of the students' performance improvements
-in the assignment:
-
-\begin{description}
+    \item[RQ1:] \textit{According to the students' perception, which API was
+        easier to learn and use?}
+    \item[RQ2:] \textit{With which API did the students improve performance the
+        most?}
     \item[RQ3:] \textit{Did the students' performance improvements match their
         perception?}
 \end{description}
+
+To answer the first two questions we used students' responses to
+our questionnaire. To answer the third question we analysed the
+students' submissions and parallel implementations. The
+students' responses and our analysis are presented next.
