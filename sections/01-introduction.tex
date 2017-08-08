@@ -1,28 +1,41 @@
 \section{Introduction}
 \label{sec:introduction}
 
-\todo[inline,color=cyan,author=Pedro]{Write new introduction}
+Multi-core architectures became essential and ubiquitous for High-Performance
+Computing in the last decade, their relevance increased by recent slowdowns on
+Moore's law and the end of Dennard scaling.  Selecting the appropriate tool for
+programming multi-core architectures is also essential, since it is necessary
+to program a multi-core architecture effectively to leverage its performance.
 
-The selection of teaching tools for Parallel and Distributed courses impacts
-the development of students' abilities to solve algorithmic problems
-efficiently. The importance of selecting good tools for teaching Parallel and
-Distributed Computing has been increasingly important, especially since the
-topic became a core component of the ACM undergraduate computer science
-curricula in 2013~\cite{acmcurricula}.
+Programming multi-core architectures demand different skills and tools from
+what is needed for traditional sequential programming. Selecting an effective
+language, framework or API for parallel and distributed programming is a
+challenge for teachers and students, especially due to the quantity and
+heterogeneity of available resources.
 
+Tools with a higher level of abstraction may provide a smoother transition from
+sequential to parallel and distributed programming, making it easier for
+students to develop working code. The cost of high-level abstractions often is
+the hiding of underlying concepts, problems and solutions, as well as code
+performance.
 
+The contribution of this paper is a comparison between \textit{Pthreads} and
+\textit{OpenMP}, two commonly used APIs for parallel and distributed
+programming.  The comparison considers the perceptions and performance results
+from undergraduate and graduate students enrolled in the course of Concurrent,
+Parallel and Distributed Computing of the University of São Paulo, Brazil.  We
+show that students were able to achieve better performance results using
+\textit{Pthreads} than \textit{OpenMP}, despite their perception that
+\textit{Pthreads} is harder to learn and use.
 
-In this work we have gathered data from assignments made by graduate students
-for the \emph{Introduction to Parallel and Distributed Computing} course. Among
-other exercises, the students were asked to ...
-
-
-In this paper we present data that supports the importance of composing a
-curriculum for Parallel and Distributed Computing courses using low-level
-programming interfaces, such as \textit{Pthreads}, as well as high-level
-interfaces, such as \textit{OpenMP}.  Brown \textit{et
-al.}~\cite{Brown:2010:SPC:1971681.1971689}, points that the choice of a
-software tool should be only one of the topics explored during a parallel
-programming course. Topics such as data structures, algorithms, software design
-and parallel hardware platforms should also be explored.
-
+The paper is organized as follows.
+Section \ref{sec:apis} describes \textit{OpenMP} and \textit{Pthreads}.
+Section \ref{sec:background} discusses related work.
+Section \ref{sec:researchdesign} discusses the course of
+Concurrent, Parallel and Distribute Computing of the University
+of São Paulo, and presents the questionnaire and our research
+questions.
+Section \ref{sec:responses} presents, discusses and analyses
+the students' responses to the questionnaire.
+Section \ref{sec:conclusion} summarizes the results and
+presents future work.
