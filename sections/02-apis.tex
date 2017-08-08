@@ -1,0 +1,127 @@
+\section{Pthreads \& OpenMP}
+\label{sec:apis}
+
+In this section we briefly describe \textit{OpenMP} and \textit{Pthreads}.
+
+\subsection{Pthreads}
+
+The \textit{Pthreads} library specification was designed to provide a standard
+and portable API for developing multi-threaded programs for multiple vendor
+platforms.  The programming interface was specified by the \textit{IEEE POSIX
+1003.1c} standard. Any implementation adhering to this standard is said to be
+POSIX threads, or \textit{Pthreads}.
+
+The C/C++ \textit{Pthreads} library controls thread execution in GNU/Linux by
+creating and synchronizing threads. In this model, the execution begins in a
+sequential region and threads must be explicitly started to begin
+a parallel region.
+Listing \ref{lst:listing-pthreads} presents a sample code using the
+\textit{Pthreads} library. The program begins execution in a
+single thread and until line 6 only one thread is running.
+
+When \texttt{pthread\_create} is called a thread is created and the application
+enters a parallel region with two simultaneous threads.  The main mechanism
+available for synchronizing thread executions is the barrier. The
+\textit{Pthreads} library implements barriers as calls to
+\texttt{pthread\_join}. A thread that reaches a barrier will wait for other
+threads. Line 10 shows an example of thread synchronization using a barrier.
+
+\begin{lstlisting}[language=C, basicstyle=\ttfamily\scriptsize, numbers=left,
+                   frame=no, showspaces=false, showstringspaces=false,
+                   caption={\textit{Pthreads} Sample Program}, captionpos=b,
+                   numberstyle=\tiny,
+                   xleftmargin=0.5cm,
+                   label=lst:listing-pthreads, keywords={%
+                       DATATYPE, pthread_t, pthread_create,
+                       pthread_join, task_function, NULL, int, main,
+                       void, printf, return%
+                       },
+                   otherkeywords={::, \#pragma, \#include, <<<,>>>, \&, \*, +, -, /, [, ], >, <}
+                   ]
+int main(){
+    pthread_t thread_id;
+    DATATYPE *parameters = 10;
+    int return_code;
+
+    return_code = pthread_create(&thread_id, NULL,
+                                 task_function,
+                                 (void *) parameters);
+
+    printf("Return Code: %d\n", return_code );
+    pthread_join(thread_id , NULL);
+
+    return 0;
+}
+
+void *task_function(void *data){
+    DATATYPE *value;
+    value = (DATATYPE *) data;
+}
+\end{lstlisting}
+
+\subsection{OpenMP}
+
+\textit{OpenMP} is an specification that defines a set of compiler directives,
+libraries and environment variables that help exploring program parallelism.
+The \textit{OpenMP} specification is kept by the \textit{OpenMP Architecture
+Review Board}, composed by hardware manufacturers, and parallel software
+developers and users.
+
+\textit{OpenMP} implements the \textit{fork-join} model. An \textit{OpenMP}
+program contains weaved sequential and parallel regions and always starts with
+a sequential region, or master thread.  \textit{OpenMP} directives are
+implemented in C/C++ and Fortran compilers. In C/C++ compilers the
+specification of parallel executions is done using \textit{pragmas}, defined in
+by using the \texttt{\#pragma} keyword.
+The compilation process is not affected by the removal of the pragma,
+which will result in the generation of a sequential version of the program.
+
+\textit{OpenMP} directives follow the format \texttt{\#pragma directive
+[clauses]}.  Each line contains at least one directive and may contain one or
+more clauses. The main directives defined by the specification are related
+to work sharing, task definition and dependencies, and synchronization.
+
+Listing \ref{lst:listing-omp} presents an \textit{OpenMP} example. The
+declaration of a parallel region with the \texttt{firstprivate} pragma on line
+1 indicates the variable \texttt{aux\_dot} should be private to every thread
+and initialized with the enclosing scope's value.  Line 3 will be executed by
+only one thread, because of the \texttt{single} pragma.
+The \texttt{for} in line 7 will be executed in parallel, with automatic work
+division.  The pragma at line 12 defines a critical region which can only be
+executed by a single thread at a time. The pragma at line 15 defines a
+region that should only be executed by the master thread.
+
+\begin{lstlisting}[language=C, basicstyle=\ttfamily\scriptsize, numbers=left,
+                   frame=no, showspaces=false, showstringspaces=false,
+                   caption={\textit{OpenMP} Sample Program}, captionpos=b,
+                   numberstyle=\tiny,
+                   xleftmargin=0.6cm,
+                   label=lst:listing-omp, keywords={%
+                       \#pragma,
+                       omp, parallel, firstprivate,
+                       single, omp_get_num_threads,
+                       for, schedule, auto,
+                       critical, master,
+                       NULL, int, main,
+                       void, printf, return%
+                   },
+                   otherkeywords={::, \#pragma, \#include, <<<,>>>, \&, \*, +, -, /, [, ], >, <}
+                       ]
+#pragma omp parallel firstprivate(aux_dot){
+    #pragma omp single
+    printf("Start of parallel region,
+            number of threads: %d\n",
+            omp_get_num_threads ());
+
+    #pragma omp for schedule(auto)
+    for(i = 0; i < SIZE; i++){
+        aux_dot += A[i] * B[i];
+    }
+
+    #pragma omp critical
+    dot += aux_dot;
+
+    #pragma omp master
+    printf("Result: %d.\n", dot);
+}
+\end{lstlisting}
