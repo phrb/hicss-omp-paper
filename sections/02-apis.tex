@@ -23,15 +23,28 @@ creating and synchronizing threads. In this model, the execution begins in a
 sequential region and threads must be explicitly started to begin
 a parallel region.
 Listing \ref{lst:listing-pthreads} presents a sample code using the
-\textit{Pthreads} library. The program begins execution in a
-single thread and until line 6 only one thread is running.
+\textit{Pthreads} library. The code was taken from
+\cite{goncalves:OpenMPNotEasy} and shows a simple multiplication of two
+matrices element-wise and summation of this multiplication.
 
-When \texttt{pthread\_create} is called a thread is created and the application
-enters a parallel region with two simultaneous threads.  The main mechanism
-available for synchronizing thread executions is the barrier. The
-\textit{Pthreads} library implements barriers as calls to
+The program begins its execution in a single thread and until line 17 only one
+thread is running. When \texttt{pthread\_create} is called a thread is created
+and the application enters a parallel region with two simultaneous threads. As
+it happens inside a for loop, several threads are expected to be created. 
+
+The strategy used for such parallelization is to devide the vectors in chunks
+and delegating the multiplication of the elements inside these chunks among
+threads, what can be seen in lines 14 and 15.
+ 
+The main mechanism available for synchronizing thread executions is the
+barrier. The \textit{Pthreads} library implements barriers as calls to
 \texttt{pthread\_join}. A thread that reaches a barrier will wait for other
-threads. Line 11 shows an example of thread synchronization using a barrier.
+threads. Line 21 shows an example of thread synchronization using a barrier.
+
+As the threads are supposed to write in a shared variable (\texttt{dot}), we
+have to explicitly take care of the concurrent access to the variable, as seen
+in Line 33 and 35, where the threads have to perform a lock at a mutex in order
+to enter the critical region.
 
 \begin{lstlisting}[language=C, basicstyle=\ttfamily\scriptsize, numbers=left,
                    frame=no, showspaces=false, showstringspaces=false,
@@ -45,24 +58,42 @@ threads. Line 11 shows an example of thread synchronization using a barrier.
                        },
                    otherkeywords={::, \#pragma, \#include, <<<,>>>, \&, \*, +, -, /, [, ], >, <}
                    ]
-int main(){
-    pthread_t thread_id;
-    DATATYPE *parameters = 10;
-    int return_code;
-
-    return_code = pthread_create(&thread_id, NULL,
-                                 task_function,
-                                 (void *) parameters);
-
-    printf("Return Code: %d\n", return_code );
-    pthread_join(thread_id , NULL);
-
+int A[SIZE], B[SIZE]; int dot = 0;
+pthread_mutex_t lock ;
+int main(int argc, char *argv []){ 
+    int num_threads, i, part size ;
+    pthread_t tid [MAX_THREADS];
+    pthread_attr_t attr; 
+    pthread_attr_init(&attr);
+    /* Initialization vectors was supressed . */
+    part_size = (SIZE + num_threads - 1) / num_threads;
+    for (i=0; i < num_threads; i++){
+        struct arg_struct *args = 
+                malloc(sizeof(struct arg_struct));
+        args->id = i;
+        args->i_part = (i * part_size);
+        args->e_part = MIN(((i + 1)* (part_size)), 
+                           SIZE) ;
+        pthread_create(&(tid[i]) ,&attr, vecDot, 
+                       (void *) args) ;
+    }
+    for (i=0; i<num_threads; i++) { 
+        pthread_join(tid[i], NULL);
+    }
+    printf("Final result: %d.\n", dot); 
     return 0;
 }
-
-void *task_function(void *data){
-    DATATYPE *value;
-    value = (DATATYPE *) data;
+void *vecDot (void *arguments){
+    struct arg_struct *args = arguments;
+    int i, partial_dot=0;
+    for(i = args->i_part; i < args->e_part; i++){
+        partial_dot += A[i] * B[i]; 
+    }
+    /* Critical region . */ 
+    pthread_mutex_lock(&lock) ; 
+    dot += partial_dot;
+    pthread_mutex_unlock(&lock) ;
+    pthread_exit(0); 
 }
 \end{lstlisting}
 
