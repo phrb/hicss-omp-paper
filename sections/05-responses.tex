@@ -29,14 +29,6 @@ in programming languages such as C, Java and Python. Figure
 languages. The C language was the one with which students reported most
 proficiency.
 
-We asked the students to evaluate their proficiency in \textit{OpenMP} and
-\textit{Pthreads}, \textit{before} completing the assignment, with two sets of
-questions. The first set used the same five-point scale as the other background
-questions and is also shown in Figure \ref{fig:background}. The students
-reported significantly larger proficiency in \textit{Pthreads} than in
-\textit{OpenMP}, and the majority of the students reported they did not know
-\textit{OpenMP} before the course.
-
 \begin{table}[htpb]
     \centering
     \begin{tabular}{@{}p{0.9\columnwidth}p{0.08\columnwidth}@{}}
@@ -60,6 +52,14 @@ reported significantly larger proficiency in \textit{Pthreads} than in
     \label{fig:classes}
     \vspace{-1em}
 \end{figure}
+
+We asked the students to evaluate their proficiency in \textit{OpenMP} and
+\textit{Pthreads}, \textit{before} completing the assignment, with two sets of
+questions. The first set used the same five-point scale as the other background
+questions and is also shown in Figure \ref{fig:background}. The students
+reported significantly larger proficiency in \textit{Pthreads} than in
+\textit{OpenMP}, and the majority of the students reported they did not know
+\textit{OpenMP} before the course.
 
 The second set of questions regarding student proficiency with the APIs
 comprised the 4 \textit{Yes or No} questions listed in Table \ref{tab:classes}.
@@ -90,6 +90,20 @@ parallelizing the two nested loops with independent iterations and improving
 the performance of the sequential code. Each question was repeated for
 \textit{OpenMP} and \textit{Pthreads}, in a total of $6$ questions.
 
+Figure \ref{fig:likert} shows a visualization of the students' responses.  The
+height of each stacked sub-column represents the percentage of respondents that
+selected each of the correspondent Likert scale agreement levels, which are
+represented by different colors.
+
+The percentages of \textit{Strongly Agree} (SA) and \textit{Agree} (A)
+responses are significantly larger for questions $(1)$, $(3)$ and $(5)$, which
+are related to \textit{OpenMP}.  Likewise, the percentages of \textit{Disagree}
+(D) responses are significantly larger for questions $(2)$, $(4)$ and $(6)$,
+which are related to \textit{Pthreads}. These responses lead to the conclusion
+that \textbf{the perception of the students was that it was easier to use
+\textit{OpenMP} than \textit{Pthreads}} to parallelize and improve the
+performance of the sequential code provided in the assignment.
+
 \begin{table}[htpb]
     \centering
     \begin{tabular}{@{}p{0.7\columnwidth}p{0.1\columnwidth}p{0.05\columnwidth}@{}}
@@ -117,20 +131,6 @@ the performance of the sequential code. Each question was repeated for
     \label{fig:likert}
     \vspace{-1em}
 \end{figure}
-
-Figure \ref{fig:likert} shows a visualization of the students' responses.  The
-height of each stacked sub-column represents the percentage of respondents that
-selected each of the correspondent Likert scale agreement levels, which are
-represented by different colors.
-
-The percentages of \textit{Strongly Agree} (SA) and \textit{Agree} (A)
-responses are significantly larger for questions $(1)$, $(3)$ and $(5)$, which
-are related to \textit{OpenMP}.  Likewise, the percentages of \textit{Disagree}
-(D) responses are significantly larger for questions $(2)$, $(4)$ and $(6)$,
-which are related to \textit{Pthreads}. These responses lead to the conclusion
-that \textbf{the perception of the students was that it was easier to use
-\textit{OpenMP} than \textit{Pthreads}} to parallelize and improve the
-performance of the sequential code provided in the assignment.
 
 The second set of questions used a five-point scale to measure the difficulty
 the students had with the learning process of the two APIs for the assignment.
