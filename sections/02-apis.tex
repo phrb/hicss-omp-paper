@@ -18,7 +18,7 @@ platforms.  The programming interface was specified by the \textit{IEEE POSIX
 1003.1c} standard. Any implementation adhering to this standard is said to be
 POSIX threads, or \textit{Pthreads}.
 
-The C/C++ \textit{Pthreads} library controls thread execution in GNU/Linux by
+The \textit{Pthreads} library controls thread execution by
 creating and synchronizing threads. In this model, the execution begins in a
 sequential region and threads must be explicitly started to begin a parallel
 region.  Listing~\ref{lst:pthreads} presents a \textit{Pthreads}
@@ -134,6 +134,13 @@ The loop in line 8 will be executed in parallel, with automatic work
 division.  The pragma at line 12 defines a critical region which can only be
 executed by a single thread at a time. The pragma at line 15 defines a
 region that should only be executed by the master thread.
+
+Note that the examples shown in Listings \ref{lst:pthreads} and
+\ref{lst:omp} solve the same problem. The example in \textit{Phthreads}
+contains much more code than the example in \textit{OpenMP}, and seems
+to be much more complex as well. It is therefore understandable that students might
+feel overwhelmed by \textit{Pthreads} example, especially when both examples are
+presented side-by-side.
 
 \begin{lstlisting}[language=C, basicstyle=\ttfamily\scriptsize, numbers=left,
                    frame=no, showspaces=false, showstringspaces=false,

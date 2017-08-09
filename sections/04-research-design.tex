@@ -5,10 +5,10 @@ This section describes our research design. We devised a questionnaire
 regarding student experience with solving the same problem using
 \textit{Pthreads} and \textit{OpenMP} during the Concurrent, Parallel and
 Distributed Computing Course at the Computer Science program of the University
-of São Paulo. We answered 3 research questions using analyses of the students'
+of São Paulo. We answered 3 research questions analysing the students'
 responses.
 
-\subsection{The Concurrent, Parallel and Distributed Computing Course}
+\subsection{The Course}
 
 The Computer Science program of the University of São Paulo offers Concurrent,
 Parallel and Distributed Computing courses for graduate and undergraduate
@@ -18,15 +18,16 @@ knowledge and experience between undergraduate and graduate students.
 The course presents students with a series of software engineering challenges
 in the form of assignments. The final is composed of an essay and a
 presentation on a relevant topic related to Concurrent, Parallel and
-Distributed Computing.
+Distributed Computing.  The course material is available
+online~\footnote{\url{https://phrb.github.io/MAC5742-0219} [Accessed in
+07/08/2017]}.
 
-We devised an assignment to measure the students' difficulties to
-learn and use \textit{Pthreads} and \textit{OpenMP} to solve
-a simple problem. Students had to implement parallel versions
-of a sequential code using \textit{Pthreads} and \textit{OpenMP}.
-We provided a sequential implementation for the calculation of
-the Mandelbrot Set. The sequential code presented an embarrassingly
-parallel problem with two nested loops, and a third loop with
+We devised an assignment to measure the students' difficulties to learn and use
+\textit{Pthreads} and \textit{OpenMP} to solve a simple problem. Students had
+to implement parallel versions of a sequential code using \textit{Pthreads} and
+\textit{OpenMP}.  We provided a sequential implementation for the calculation
+of the Mandelbrot Set~\cite{douady1984etude}. The sequential code presented an
+embarrassingly parallel problem with two nested loops, and a third loop with
 dependent iterations that could not be parallelized easily.
 
 The assignment required that the students measure the performance of the
@@ -48,16 +49,16 @@ the completion of the assignment.
 
 We obtained responses, and consent to use them in our research, from 38 of the
 54 students enrolled in the Concurrent, Parallel and Distributed Computing
-course. Section \ref{sec:background} presents a detailed description of
-each set of questions our analysis of the students' responses.
+course. Section \ref{sec:responses} presents a detailed description of
+each set of questions and our analysis of the students' responses.
 
 \subsection{Research Questions}
 \label{sec:resques}
 
-In previous work~\cite{goncalves:OpenMPNotEasy} we showed that
-teaching \textit{OpenMP} requires teaching important parallel
-and distributed computing concepts first, since it is easy
-to find errors on commonly used \textit{OpenMP} learning material.
+In previous work~\cite{goncalves:OpenMPNotEasy} we showed that teaching
+\textit{OpenMP} requires the introduction of important parallel and distributed
+computing concepts first, since it is easy to find errors on commonly used
+\textit{OpenMP} learning material.
 
 In this paper we argue that students are capable of learning and using
 \textit{Pthreads} to obtain good performance improvements, despite their
