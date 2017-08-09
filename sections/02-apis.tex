@@ -20,80 +20,85 @@ POSIX threads, or \textit{Pthreads}.
 
 The C/C++ \textit{Pthreads} library controls thread execution in GNU/Linux by
 creating and synchronizing threads. In this model, the execution begins in a
-sequential region and threads must be explicitly started to begin
-a parallel region.
-Listing \ref{lst:listing-pthreads} presents a sample code using the
-\textit{Pthreads} library. The code was taken from
-\cite{goncalves:OpenMPNotEasy} and shows a simple multiplication of two
-matrices element-wise and summation of this multiplication.
+sequential region and threads must be explicitly started to begin a parallel
+region.  Listing~\ref{lst:pthreads} presents a \textit{Pthreads}
+example. The code shows the parallel computation of the dot product of two
+arrays.
 
-The program begins its execution in a single thread and until line 17 only one
-thread is running. When \texttt{pthread\_create} is called a thread is created
-and the application enters a parallel region with two simultaneous threads. As
-it happens inside a for loop, several threads are expected to be created. 
-
-The strategy used for such parallelization is to devide the vectors in chunks
-and delegating the multiplication of the elements inside these chunks among
-threads, what can be seen in lines 14 and 15.
- 
-The main mechanism available for synchronizing thread executions is the
-barrier. The \textit{Pthreads} library implements barriers as calls to
-\texttt{pthread\_join}. A thread that reaches a barrier will wait for other
-threads. Line 21 shows an example of thread synchronization using a barrier.
-
-As the threads are supposed to write in a shared variable (\texttt{dot}), we
-have to explicitly take care of the concurrent access to the variable, as seen
-in Line 33 and 35, where the threads have to perform a lock at a mutex in order
-to enter the critical region.
+The program in Listing~\ref{lst:pthreads} runs in a single thread until
+line 22, when \texttt{pthread\_create} is called.  Each call
+in the loop initializes a new thread.
+The parallelization in this example divides the arrays in chunks
+and shares multiplications between threads.
+One thread synchronization tool available in \textit{Pthreads} is the barrier,
+implemented as calls to \texttt{pthread\_join}. A thread that reaches a barrier
+waits for other threads. Line 27 shows an example of thread synchronization
+using a barrier.
+To avoid race conditions on the \texttt{dot} shared variable
+the example uses \textit{mutexes} to create a critical
+region, as seen in lines 42 and 44.
 
 \begin{lstlisting}[language=C, basicstyle=\ttfamily\scriptsize, numbers=left,
                    frame=no, showspaces=false, showstringspaces=false,
                    caption={\textit{Pthreads} Sample Program}, captionpos=b,
                    numberstyle=\tiny,
                    xleftmargin=0.5cm,
-                   label=lst:listing-pthreads, keywords={%
+                   label=lst:pthreads, keywords={%
                        DATATYPE, pthread_t, pthread_create,
                        pthread_join, task_function, NULL, int, main,
-                       void, printf, return%
+                       void, printf, return, pthread_mutex_t,
+                       pthread_attr_t, pthread_attr_init,
+                       MAX_THREADS, SIZE, char, struct, malloc,
+                       MIN, pthread_mutex_lock, pthread_mutex_unlock,
+                       pthread_exit%
                        },
                    otherkeywords={::, \#pragma, \#include, <<<,>>>, \&, \*, +, -, /, [, ], >, <}
                    ]
 int A[SIZE], B[SIZE]; int dot = 0;
-pthread_mutex_t lock ;
-int main(int argc, char *argv []){ 
-    int num_threads, i, part size ;
-    pthread_t tid [MAX_THREADS];
-    pthread_attr_t attr; 
-    pthread_attr_init(&attr);
-    /* Initialization vectors was supressed . */
-    part_size = (SIZE + num_threads - 1) / num_threads;
-    for (i=0; i < num_threads; i++){
-        struct arg_struct *args = 
-                malloc(sizeof(struct arg_struct));
-        args->id = i;
-        args->i_part = (i * part_size);
-        args->e_part = MIN(((i + 1)* (part_size)), 
-                           SIZE) ;
-        pthread_create(&(tid[i]) ,&attr, vecDot, 
-                       (void *) args) ;
-    }
-    for (i=0; i<num_threads; i++) { 
-        pthread_join(tid[i], NULL);
-    }
-    printf("Final result: %d.\n", dot); 
-    return 0;
+pthread_mutex_t lock;
+
+int main(int argc, char *argv []){
+  int num_threads, i, part_size;
+  pthread_t tid [MAX_THREADS];
+  pthread_attr_t attr;
+  pthread_attr_init(&attr);
+  /* Array initialization supressed */
+
+  part_size = (SIZE + num_threads - 1) / num_threads;
+
+  for (i = 0; i < num_threads; i++){
+      struct arg_struct *args = \
+              malloc(sizeof(struct arg_struct));
+
+      args->id = i;
+      args->i_part = (i * part_size);
+      args->e_part = MIN(((i + 1) * (part_size)),
+                         SIZE);
+
+      pthread_create(&(tid[i]) ,&attr,
+                     task_function,
+                     (void *) args);
+  }
+  for (i = 0; i < num_threads; i++) {
+      pthread_join(tid[i], NULL);
+  }
+  printf("Result: %d.\n", dot);
+  return 0;
 }
-void *vecDot (void *arguments){
-    struct arg_struct *args = arguments;
-    int i, partial_dot=0;
-    for(i = args->i_part; i < args->e_part; i++){
-        partial_dot += A[i] * B[i]; 
-    }
-    /* Critical region . */ 
-    pthread_mutex_lock(&lock) ; 
-    dot += partial_dot;
-    pthread_mutex_unlock(&lock) ;
-    pthread_exit(0); 
+
+void *task_function (void *arguments){
+  struct arg_struct *args = (arg_struct *) arguments;
+  int i, partial_dot = 0;
+
+  for(i = args->i_part; i < args->e_part; i++){
+      partial_dot += A[i] * B[i];
+  }
+
+  /* Critical region */
+  pthread_mutex_lock(&lock);
+  dot += partial_dot;
+  pthread_mutex_unlock(&lock);
+  pthread_exit(0);
 }
 \end{lstlisting}
 
@@ -119,12 +124,13 @@ which will result in the generation of a sequential version of the program.
 more clauses. The main directives defined by the specification are related
 to work sharing, task definition and dependencies, and synchronization.
 
-Listing \ref{lst:listing-omp} presents an \textit{OpenMP} example. The
+Listing \ref{lst:omp} presents an \textit{OpenMP} example for the
+same computation shown in Listing \ref{lst:pthreads}. The
 declaration of a parallel region with the \texttt{firstprivate} pragma on line
 1 indicates the variable \texttt{aux\_dot} should be private to every thread
 and initialized with the enclosing scope's value.  Line 3 will be executed by
 only one thread, because of the \texttt{single} pragma.
-The \texttt{for} in line 7 will be executed in parallel, with automatic work
+The loop in line 8 will be executed in parallel, with automatic work
 division.  The pragma at line 12 defines a critical region which can only be
 executed by a single thread at a time. The pragma at line 15 defines a
 region that should only be executed by the master thread.
@@ -134,7 +140,7 @@ region that should only be executed by the master thread.
                    caption={\textit{OpenMP} Sample Program}, captionpos=b,
                    numberstyle=\tiny,
                    xleftmargin=0.6cm,
-                   label=lst:listing-omp, keywords={%
+                   label=lst:omp, keywords={%
                        \#pragma,
                        omp, parallel, firstprivate,
                        single, omp_get_num_threads,
@@ -146,20 +152,20 @@ region that should only be executed by the master thread.
                    otherkeywords={::, \#pragma, \#include, <<<,>>>, \&, \*, +, -, /, [, ], >, <}
                        ]
 #pragma omp parallel firstprivate(aux_dot){
-    #pragma omp single
-    printf("Start of parallel region,
-            number of threads: %d\n",
-            omp_get_num_threads ());
+  #pragma omp single
+  printf("Start of parallel region,
+          number of threads: %d\n",
+          omp_get_num_threads ());
 
-    #pragma omp for schedule(auto)
-    for(i = 0; i < SIZE; i++){
-        aux_dot += A[i] * B[i];
-    }
+  #pragma omp for schedule(auto)
+  for(i = 0; i < SIZE; i++){
+    aux_dot += A[i] * B[i];
+  }
 
-    #pragma omp critical
-    dot += aux_dot;
+  #pragma omp critical
+  dot += aux_dot;
 
-    #pragma omp master
-    printf("Result: %d.\n", dot);
+  #pragma omp master
+  printf("Result: %d.\n", dot);
 }
 \end{lstlisting}
