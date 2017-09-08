@@ -12,7 +12,7 @@
 
 ### Reviewer #9A
 
-The following explicit questions need to be addressed:
+#### Explicit Questions
 
 1. What were the learning objectives of the course and research project?
 2. Did you have ethical approval to do a study like this? You mention consent
@@ -25,8 +25,6 @@ The following explicit questions need to be addressed:
    study other aspects of programming?
 
 ### Reviewer #9B
-
-The following explicit questions need to be addressed:
 
 #### Explicit Questions
 
@@ -75,10 +73,9 @@ The following explicit questions need to be addressed:
 
 #### Other Comments
 
-- Comment:
-> The authors did answer their three research questions. However, the authors
-> over-claim one of their major results (see #7, below), along with saying some
-> of their results are "significant" without providing statistical measure.
+1. The authors did answer their three research questions. However, the authors
+   over-claim one of their major results (see #7, below), along with saying some
+   of their results are "significant" without providing statistical measure.
 
 ### Reviewer #9C
 
@@ -92,20 +89,15 @@ The following explicit questions need to be addressed:
 
 #### Other Comments
 
-- Comment
-> I personally think that a much larger discussion section is required that
-> actually discusses the chosen method and the conclusions drawn from it.
-
-- Comment:
-> Since you have a Likert-Scale, you can apply non-parametric tests on it in
-> order to check, whether group A or B is different. Descriptive data and raw
-> measurement is fine, because it gives readers a change to get an idea about
-> the data, but only relying on such things is not enough. Having said this, I
-> do not think that you can conclude something from the present paper, because
-> the conclusion is just based on "looking at descriptive data".
-
-- Comment:
-> Please fix the statistical part of the paper. Nothing would be more annoying
-> than having a paper published whose interpretation depends on results that
-> would be different in case appropriate analysis techniques would have been
-> applied.
+1. I personally think that a much larger discussion section is required that
+  actually discusses the chosen method and the conclusions drawn from it.
+2. Since you have a Likert-Scale, you can apply non-parametric tests on it in
+   order to check, whether group A or B is different. Descriptive data and raw
+   measurement is fine, because it gives readers a change to get an idea about
+   the data, but only relying on such things is not enough. Having said this, I
+   do not think that you can conclude something from the present paper, because
+   the conclusion is just based on "looking at descriptive data".
+3. Please fix the statistical part of the paper. Nothing would be more annoying
+   than having a paper published whose interpretation depends on results that
+   would be different in case appropriate analysis techniques would have been
+   applied.
