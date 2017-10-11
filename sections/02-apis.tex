@@ -21,11 +21,11 @@ POSIX threads, or \textit{Pthreads}.
 The \textit{Pthreads} library controls thread execution by
 creating and synchronizing threads. In this model, the execution begins in a
 sequential region and threads must be explicitly started to begin a parallel
-region.  Listing~\ref{lst:pthreads} presents a \textit{Pthreads}
+region.  Figure~\ref{lst:pthreads} presents a \textit{Pthreads}
 example. The code shows the parallel computation of the dot product of two
 arrays.
 
-The program in Listing~\ref{lst:pthreads} runs in a single thread until
+The program in Figure~\ref{lst:pthreads} runs in a single thread until
 line 22, when \texttt{pthread\_create} is called.  Each call
 in the loop initializes a new thread.
 The parallelization in this example divides the arrays in chunks
@@ -38,12 +38,13 @@ To avoid race conditions on the \texttt{dot} shared variable
 the example uses \textit{mutexes} to create a critical
 region, as seen in lines 42 and 44.
 
+\begin{figure}[htb]
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[language=C, basicstyle=\ttfamily\scriptsize, numbers=left,
                    frame=no, showspaces=false, showstringspaces=false,
-                   caption={\textit{Pthreads} Sample Program}, captionpos=b,
                    numberstyle=\tiny,
-                   xleftmargin=0.5cm,
-                   label=lst:pthreads, keywords={%
+                   xleftmargin=0.5cm, frame=trBL,
+                   keywords={%
                        DATATYPE, pthread_t, pthread_create,
                        pthread_join, task_function, NULL, int, main,
                        void, printf, return, pthread_mutex_t,
@@ -101,6 +102,10 @@ void *task_function (void *arguments){
   pthread_exit(0);
 }
 \end{lstlisting}
+\end{minipage}
+\caption{\textit{Pthreads} Sample Program}
+\label{lst:pthreads}
+\end{figure}
 
 \subsection{OpenMP}
 
@@ -124,8 +129,8 @@ which will result in the generation of a sequential version of the program.
 more clauses. The main directives defined by the specification are related
 to work sharing, task definition and dependencies, and synchronization.
 
-Listing \ref{lst:omp} presents an \textit{OpenMP} example for the
-same computation shown in Listing \ref{lst:pthreads}. The
+Figure \ref{lst:omp} presents an \textit{OpenMP} example for the
+same computation shown in Figure \ref{lst:pthreads}. The
 declaration of a parallel region with the \texttt{firstprivate} pragma on line
 1 indicates the variable \texttt{aux\_dot} should be private to every thread
 and initialized with the enclosing scope's value.  Line 3 will be executed by
@@ -135,19 +140,20 @@ division.  The pragma at line 12 defines a critical region which can only be
 executed by a single thread at a time. The pragma at line 15 defines a
 region that should only be executed by the master thread.
 
-Note that the examples shown in Listings \ref{lst:pthreads} and
+Note that the examples shown in Figures \ref{lst:pthreads} and
 \ref{lst:omp} solve the same problem. The example in \textit{Phthreads}
 contains much more code than the example in \textit{OpenMP}, and seems
 to be much more complex as well. It is therefore understandable that students might
 feel overwhelmed by \textit{Pthreads} example, especially when both examples are
 presented side-by-side.
 
+\begin{figure}[htb]
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[language=C, basicstyle=\ttfamily\scriptsize, numbers=left,
                    frame=no, showspaces=false, showstringspaces=false,
-                   caption={\textit{OpenMP} Sample Program}, captionpos=b,
                    numberstyle=\tiny,
-                   xleftmargin=0.6cm,
-                   label=lst:omp, keywords={%
+                   xleftmargin=0.6cm, frame=trBL,
+                   keywords={%
                        \#pragma,
                        omp, parallel, firstprivate,
                        single, omp_get_num_threads,
@@ -176,3 +182,10 @@ presented side-by-side.
   printf("Result: %d.\n", dot);
 }
 \end{lstlisting}
+\end{minipage}
+\caption{\textit{OpenMP} Sample Program}
+\label{lst:omp}
+\end{figure}
+
+
+
