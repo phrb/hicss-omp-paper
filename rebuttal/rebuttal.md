@@ -16,7 +16,7 @@
 
 1. What were the learning objectives of the course and research project? (TODO: Alfredo)
 2. Did you have ethical approval to do a study like this? You mention consent
-   but not much more than that (TODO: Paulo)
+   but not much more than that (DONE)
 3. You mention significant, but you don't have evidence to support this claim.
    You need to show statistical analysis for your data (TODO: Pedro)
 4. The graphs are hard to read. Consider using a different colour palette (TODO: Pedro)
@@ -42,14 +42,14 @@
    authors described this course as a place where undergraduate students and
    graduate students could share their knowledge). (TODO: Alfredo)
 3. How were the questions developed, and what measures did the authors take to
-   make sure they were appropriate to measure what they wanted to measure? (DONE: ele pode ter razão, não temos o que fazer)
+   make sure they were appropriate to measure what they wanted to measure? (DONE)
 4. Were the questions listed in Portuguese (the reviewer believes this might be
    an option as this study took place in Brazil) or English? (TODO: Pedro)
 5. Some of the questions in Table 1 are vague and the students might interpret
    them in different ways. For example, what level of commitment/experience
    does "Had contact with the APIs before?" assume? What does "the API" mean?
    The same question goes for what "learned" means in the following two
-   questions.(DONE: ele pode ter razão, não temos o que fazer)
+   questions.(DONE)
 6. In Table 3, what is the difference between questions 2 and 3? "Was simpler
    to use" vs. "Was easier to use". (TODO: Pedro)
 7. The reviewer does not believe that the major finding of this paper is
@@ -62,14 +62,14 @@
 1. Some of the statements in the introduction and the descriptions of OpenMP
    and Pthreads can use additional references (e.g., "slowdowns on Moore's law
    and the end of Dennard scaling"). (TODO: Raphael)
-2. Recommend changing "Listing X" to "Figure X". (TODO: Paulo)
+2. Recommend changing "Listing X" to "Figure X". (DONE)
 3. Recommend displaying "Listing 1" in one column instead of splitting it in
-   the middle. (TODO: Paulo)
+   the middle. (DONE)
 4. Recommend using active voice instead of passive voice (e.g., "Different
-   approaches have been proposed to study..." (TODO: Paulo)
+   approaches have been proposed to study..." (DONE)
 5. Recommend not using colors for Figures since some readers might not be able
    to distinguish them (or someone might print it out in black-and-white). (TODO: Pedro, relacionado com item 4 do revisão 1)
-6. Table 1. The second question has a typo "Had contat [sic] with the API///" (TODO: Paulo)
+6. Table 1. The second question has a typo "Had contat [sic] with the API///" (DONE)
 
 #### Other Comments
 
@@ -81,7 +81,7 @@
 
 #### Explicit Questions
 
-1. Why do you call it a Likert-like scale? (TODO: Paulo)
+1. Why do you call it a Likert-like scale? (DONE)
 2. How were the APIs introduced in the course? (TODO: Alfredo)
 3. What were the exercises? (TODO: Pedro, mas do item 1 do revisor 2)
 4. Is it possible that differences in recognition depend on the presentation of
