@@ -49,13 +49,14 @@ dependent iterations that could not be parallelized easily.
                    otherkeywords={::, \#pragma, \#include, <<<,>>>, \&, \*, +, -, /, [, ], >, <}
                    ]
 z = 0;
-for(y from 0 to y_max - 1) {
-    /* Indepedent iterations */
-    for(x from 0 to x_max - 1) {
-        /* Independet iterations */
+for(x from 0 to x_max - 1) {
+    /* Independent iterations */
+    for(y from 0 to y_max - 1) {
+        /* Independent iterations */
         for (iteration from 0 to iteration_max,
              and f_c(z) < limit) {
-            /* Dependent iterations */
+            /* Iterations depend on
+               previous values of z */
             z = f_c(z);
         }
     }
