@@ -36,7 +36,7 @@
    they provided as an example, but do not expand on their "simple problem").
    There is no way for the reader to determine how appropriate this task was
    without knowing the problem, so perhaps listing the question/problem itself
-   would be best. (TODO: Pedro)
+   would be best. (done)
 2. The reviewer assumes that the programming assignment and questionnaires were
    solo activities. However, this was not explicitly described. (Since the
    authors described this course as a place where undergraduate students and
