@@ -60,8 +60,9 @@ def plot_bar_stacks(data,
     c_index = 0
 
     for key, value in data.items():
-        rect = ax.bar(indexes, value, width, color = cmap(1. * (c_index / colors)), edgecolor = 'lightgrey', bottom = previous_bottom)
+        rect = ax.bar(indexes, value, width, color = cmap(float(c_index) / float(colors)), edgecolor = 'lightgrey', bottom = previous_bottom)
 
+        print(float(c_index) / float(colors))
         c_index += 1
 
         previous_bottom += value
@@ -286,7 +287,7 @@ if __name__ == '__main__':
                     "",
                     0,
                     100,
-                    "viridis",
+                    "gray",
                     xticks_rotation = '0',
                     align = 'center')
 
@@ -357,7 +358,7 @@ if __name__ == '__main__':
                     "",
                     0,
                     100,
-                    "viridis",
+                    "gray",
                     xticks_rotation = '0',
                     align = 'center')
 
@@ -432,7 +433,7 @@ if __name__ == '__main__':
                     "",
                     0,
                     100,
-                    "viridis",
+                    "gray",
                     xticks_rotation = '0',
                     align = 'center')
 
@@ -483,7 +484,7 @@ if __name__ == '__main__':
                     "",
                     0,
                     100,
-                    "viridis",
+                    "gray",
                     xticks_rotation = '0',
                     align = 'center')
 
@@ -532,7 +533,7 @@ if __name__ == '__main__':
                     "",
                     0,
                     100,
-                    "viridis",
+                    "gray",
                     xticks_rotation = '0',
                     align = 'center')
 
